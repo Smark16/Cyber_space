@@ -1,0 +1,45 @@
+#ON LINUX
+sudo apt install openssl
+
+#TO CHECK FOR OPENSSL INSTALLATION
+openssl version
+
+#ADD TO ENVIRONMENT VARIABLES
+C => program files => openssl win64 => bin => copy path
+
+#CHECKING CIPHERS TO USE FOR ENCRYPTION
+openssl enc -ciphers
+
+#TO ENTER MESSAGE IN LINUX
+nv [file.txt] => nv="new vim"
+cat [file.txt] => to show file content 
+
+#TO ENTER MESSAGE IN WINDOWS
+echo "Stiegangoply amine." | openssl enc -aes-256-cbc -a -salt -pass pass:YourPassword => U2FsdGVkX19Hywu7IEFZpDHT/fcVuA5uFvUqTnyBWtT/qcnUsnY24fW//YjJojOJ
+openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 10000 -salt -in "C:\Users\HP\Desktop\message.txt" -out "C:\Users\HP\Desktop\decrypted_message.txt"
+
+#TO DECRYPT
+openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 10000 -d -salt -in "C:\Users\HP\Desktop\decrypted_message.txt" -out "C:\Users\HP\Desktop\original_message.txt"
+
+STEGANOGRAPHY - HIDE DATA IN IMAGES
+Download setup -openStego-0.8.6.exe
+
+#INSTALL JAVA - REQUIREMENT
+https://www.java.com/en/download/
+
+#openStego
+Message file Field => text file with cipher text
+Cover file => Image to hide the message
+Output stego file => loaction of image to hide the text
+
+#EXTRACT DATA
+Input Stego File => This is the file where the hidden message is embedded (the stego file you created earlier).
+Output Folder for Message File => This is the folder where OpenStego will save the extracted message (ciphertext).
+
+
+#HASHING USING OPENSSL
+openssl dgst -sha256 "path/to/your/file.txt" =>  Hash a Password or Text
+
+echo -n "YourPassword" | openssl dgst -sha256 => echo -n "YourPassword" | openssl dgst -sha256
+
+

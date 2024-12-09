@@ -1,0 +1,18 @@
+ Hosting Website on virtual Machine
+_________________________________________________
+sudo apt-get update
+sudo apt install apache2
+sudo service apache2 start
+ip a => to show ip address of apache2 server
+cd /var/www/html/ => directory containing index.html
+ls => to see the index.html file
+sudo rm index.html
+cd
+sudo mkdir [directory]
+sudo mount -t vboxsf [folder containing index file on ur pc] [directory]
+cd [directory]
+cd
+sudo cp [directory].index.html /var/www/html/index.html
+ip a => display ip address of the index.html file
+sudo ufw enable => enable unsupported fire wall
+sudo ufw allow 80/tcp => allow traffic on port 80

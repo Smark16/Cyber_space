@@ -1,0 +1,99 @@
+QUESTION 1 => Cryptography/Hashing - Kali Linux & Windows Networking Setup
+
+#Verify Network Connectivity:
+ifconfig or ip a => to find the VM’s IP address.
+
+ping 8.8.8.8 => Test the internet connection 
+
+#Configuring Windows 10 Network Adapter:
+1. Set Bridged Adapter in Windows 10
+
+# Verify Connectivity
+Open the command prompt in Windows 10.
+Use ping <Kali_VM_IP> to ensure that Kali Linux and Windows 10 can communicate.
+
+
+Question 2: Cryptography/Hashing - Hashing Sensitive Data with SHA-256
+# Steps to Hash Data Using SHA-256 on Kali Linux:
+vim sensitive_data.txt => Create a Text File with Sensitive Data:
+
+#Hash the Contents Using SHA-256:
+openssl dgst -sha256 sensitive_data.txt
+
+# Advantages of Using Hashing for Storing Passwords:
+Security: Hashing passwords ensures that even if the data is exposed, the original passwords cannot be easily retrieved.
+One-Way Process: Hashing is a one-way process, meaning the original password cannot be reconstructed from the hash.
+Speed and Efficiency: Hashing algorithms like SHA-256 are fast to compute, which is important for systems requiring frequent authentication.
+Salted Hashes: Combining hashing with a unique "salt" for each password makes it more secure by preventing attacks like rainbow table attacks.
+
+#How Hash Functions Ensure Data Integrity:
+Data Integrity: When you hash a file, you create a fixed-length string (hash) that uniquely represents the file’s contents. If any part of the data is altered (even a single character), the resulting hash will be completely different.
+Verification: By comparing the hash value before and after transmission or storage, you can verify whether the data has been tampered with. If the hashes match, the data is considered intact; otherwise, it has been altered.
+
+Practical Question 3: Cracking Password Hashes with John the Ripper
+# Create a Password Hash File:
+sudo cat /etc/shadow | grep <username> > passwords.txt => This will output the password hash for a specific user. Alternatively, you can generate your own hashes using openssl or htpasswd if needed.
+
+#Use John the Ripper to Crack Passwords:
+sudo apt-get install john => install john reeper
+
+#Run John the Ripper against the passwords.txt file
+john passwords.txt => John will attempt to crack the hashes. Allow it to run for a few minutes, and then stop it by pressing Ctrl+C if you wish to halt the cracking process.
+
+# Check Cracked Passwords:
+john --show passwords.txt
+
+#What was the outcome of your cracking attempt? Which passwords were successfully cracked?
+Outcome: The success of the cracking attempt depends on the strength of the passwords and the hashing algorithm used. Weak or commonly used passwords (e.g., password123, admin123) may be easily cracked, while strong, unique passwords will likely remain uncracked without advanced techniques or significantly more time.
+Successfully Cracked Passwords: If John successfully cracked any passwords, they will be displayed when using the john --show passwords.txt command.
+
+#Implications of Weak Passwords:
+Security Risks: Weak passwords (e.g., dictionary words or common phrases) are vulnerable to brute-force or dictionary attacks. Attackers can easily crack them in a short amount of time, gaining unauthorized access to sensitive accounts or systems.
+Best Practices: Using long, complex passwords that combine letters (uppercase and lowercase), numbers, and special characters, as well as employing password managers and multi-factor authentication (MFA), can greatly improve security.
+
+Practical Question 4: Packet Filtering Using Wireshark
+
+#Start Wireshark and Capture Packets:
+Open Wireshark on your Kali Linux VM.
+Choose the appropriate network interface (usually eth0 or wlan0) to capture packets.
+
+# Simulate a Web Application Request and Response:
+Open a web browser and visit a web application, or if you're testing a local application, access it via http://localhost or 127.0.0.1.
+Perform actions like logging in or submitting a form to generate web traffic.
+
+#Stop the Packet Capture:
+After a few minutes, stop the capture by clicking the Stop button in Wireshark.
+
+#Analyze Packets Using Filters:
+http => To isolate HTTP requests and responses, you can apply an HTTP filter:
+
+
+# What Kinds of HTTP Methods Were Observed During the Packet Capture?
+
+HTTP methods such as GET, POST, PUT, and DELETE are common in web traffic:
+GET: Retrieves data from the server (e.g., when you access a webpage).
+POST: Sends data to the server (e.g., submitting a form).
+PUT: Updates data on the server (typically used for REST APIs).
+DELETE: Removes data from the server (typically used for REST APIs).
+
+
+#How Can Packet Filtering and Analysis with Wireshark Be Used to Enhance Web Application Security?
+Traffic Monitoring: Wireshark helps identify unencrypted traffic, allowing administrators to detect sensitive data (such as passwords) transmitted in plaintext, which is a security risk.
+Vulnerability Identification: By analyzing HTTP requests and responses, vulnerabilities such as improper handling of user input (e.g., SQL injection or cross-site scripting) can be identified.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
